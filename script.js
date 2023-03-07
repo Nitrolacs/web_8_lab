@@ -30,8 +30,65 @@ let newStudentSurname = newStudent.surname;
 console.log(`Доступ на чтение: ${newStudentSurname}, доступ на запись: ${student.age} (было 19)`);
 
 // Создание конструктора для собственного объекта
+function Circle(x, y, radius) {
+	this._centerX = x;
+	this._centerY = y;
+	this._radius = radius;
 
+	this.circumference = function() {
+		return 2 * Math.PI * radius;
+	}
+	this.areaOfCircle = function() {
+		return Math.PI * Math.pow(radius, 2);
+	}
+}
 
+Object.defineProperty(Circle.prototype, 'centerX', {
+	get: function() {
+		 return this._centerX;
+	},
+	set: function (newX) {
+		this._centerX = newX;
+	}
+})
+
+Object.defineProperty(Circle.prototype, 'centerY', {
+	get: function() {
+		 return this._centerY;
+	},
+	set: function (newY) {
+		this._centerY = newY;
+	}
+})
+
+Object.defineProperty(Circle.prototype, 'radius', {
+	get: function() {
+		 return this._radius;
+	},
+	set: function (newRadius) {
+		this._radius = newRadius;
+	}
+})
+
+Object.defineProperty(Circle.prototype, 'diameter', {
+	get: function() {
+		 return this._radius * 2;
+	}
+})
+
+let circle = new Circle(3, 4, 5);
+
+console.log(circle.circumference());
+console.log(circle.areaOfCircle());
+
+console.log(circle.centerX);
+console.log(circle.centerY);
+console.log(circle.radius);
+console.log(circle.diameter);
+
+circle.radius = 7;
+console.log(circle.radius);
+console.log(circle.diameter);
 
 // Расширение встроенного типа
 Array.prototype.average = function() {
